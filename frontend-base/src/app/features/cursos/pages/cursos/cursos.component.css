@@ -1,0 +1,245 @@
+/* ═══════════════════════════════════════════
+   CURSOS — EduSmart Premium
+═══════════════════════════════════════════ */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* TITULO */
+.titulo {
+  text-align: center;
+  padding: 40px 40px 0;
+  font-size: 32px;
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: -0.8px;
+  font-family: 'Inter', sans-serif;
+}
+
+.titulo::after {
+  content: '';
+  display: block;
+  width: 48px;
+  height: 3px;
+  background: linear-gradient(90deg, #00e5ff, #7c3aed);
+  margin: 14px auto 0;
+  border-radius: 100px;
+}
+
+/* CONTAINER */
+.container {
+  padding: 32px 40px;
+  background: #0a0c1e;
+  min-height: calc(100vh - 120px);
+  font-family: 'Inter', sans-serif;
+}
+
+/* FORMULARIO */
+form {
+  width: 100%;
+  max-width: 520px;
+  margin: 0 auto 48px;
+  background: rgba(255, 255, 255, 0.03);
+  padding: 36px;
+  border-radius: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+/* INPUTS */
+input,
+textarea {
+  width: 100%;
+  padding: 13px 16px;
+  margin-top: 0;
+  margin-bottom: 16px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.04);
+  color: #ffffff;
+  font-size: 14px;
+  font-family: 'Inter', sans-serif;
+  transition: all 0.25s ease;
+  box-sizing: border-box;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: rgba(255, 255, 255, 0.25);
+}
+
+/* FOCUS */
+input:focus,
+textarea:focus {
+  outline: none;
+  border-color: rgba(0, 229, 255, 0.5);
+  background: rgba(0, 229, 255, 0.05);
+  box-shadow: 0 0 0 3px rgba(0, 229, 255, 0.1);
+}
+
+/* TEXTAREA */
+textarea {
+  height: 110px;
+  resize: none;
+}
+
+/* BOTÓN PRINCIPAL */
+form button {
+  width: 100%;
+  padding: 14px;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #00e5ff, #7c3aed);
+  color: white;
+  font-size: 15px;
+  font-weight: 700;
+  font-family: 'Inter', sans-serif;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 20px rgba(0, 229, 255, 0.2);
+  letter-spacing: 0.3px;
+}
+
+form button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(0, 229, 255, 0.35);
+}
+
+form button:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* MENSAJES */
+small {
+  display: block;
+  margin-top: -10px;
+  margin-bottom: 14px;
+  color: #ff6b6b;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+/* VALIDACIONES */
+input.ng-invalid.ng-touched,
+textarea.ng-invalid.ng-touched {
+  border-color: rgba(255, 107, 107, 0.6);
+  background: rgba(255, 107, 107, 0.05);
+}
+
+input.ng-valid.ng-touched,
+textarea.ng-valid.ng-touched {
+  border-color: rgba(0, 229, 255, 0.4);
+  background: rgba(0, 229, 255, 0.04);
+}
+
+/* LISTA DE CURSOS */
+.lista-cursos {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+/* TARJETAS */
+.card {
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 16px;
+  padding: 28px;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #00e5ff, #7c3aed);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(0, 229, 255, 0.15);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+}
+
+.card:hover::before {
+  opacity: 1;
+}
+
+.card h3 {
+  color: #ffffff;
+  font-size: 17px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  letter-spacing: -0.3px;
+}
+
+.card p {
+  color: rgba(255, 255, 255, 0.45);
+  margin: 6px 0;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.card p strong {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* ACCIONES */
+.acciones {
+  margin-top: 22px;
+  display: flex;
+  gap: 10px;
+}
+
+.acciones button {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  color: white;
+  font-size: 13px;
+  font-weight: 600;
+  font-family: 'Inter', sans-serif;
+  transition: all 0.2s ease;
+}
+
+.acciones button:first-child {
+  background: rgba(245, 158, 11, 0.8);
+}
+
+.acciones button:first-child:hover {
+  background: #f59e0b;
+  transform: translateY(-1px);
+}
+
+.acciones button:last-child {
+  background: rgba(239, 68, 68, 0.8);
+}
+
+.acciones button:last-child:hover {
+  background: #ef4444;
+  transform: translateY(-1px);
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .container {
+    padding: 20px;
+  }
+
+  form {
+    padding: 24px 20px;
+  }
+}

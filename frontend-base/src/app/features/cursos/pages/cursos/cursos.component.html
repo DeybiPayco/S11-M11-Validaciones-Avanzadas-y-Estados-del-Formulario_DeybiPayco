@@ -1,0 +1,60 @@
+<div class="container">
+
+    <h2 class="titulo">Gestión de Cursos</h2>
+
+    <form [formGroup]="cursoForm" (ngSubmit)="guardarCurso()">
+
+        <input type="text" placeholder="Nombre del curso" formControlName="nombre">
+
+        <small *ngIf="cursoForm.get('nombre')?.invalid && cursoForm.get('nombre')?.touched">
+            El nombre es obligatorio
+        </small>
+
+        <input type="text" placeholder="Categoría" formControlName="categoria">
+
+        <small *ngIf="cursoForm.get('categoria')?.invalid && cursoForm.get('categoria')?.touched">
+            La categoría es obligatoria
+        </small>
+
+        <textarea placeholder="Descripción" formControlName="descripcion"></textarea>
+
+        <small *ngIf="cursoForm.get('descripcion')?.invalid && cursoForm.get('descripcion')?.touched">
+            La descripción debe tener mínimo 10 caracteres
+        </small>
+
+        <button type="submit" [disabled]="cursoForm.invalid">
+            {{ editando ? 'Actualizar Curso' : 'Guardar Curso' }}
+        </button>
+
+    </form>
+
+    <div class="lista-cursos">
+
+        <div class="card" *ngFor="let curso of cursos; let i = index">
+
+            <h3>{{ curso.nombre }}</h3>
+
+            <p>
+                <strong>Categoría:</strong>
+                {{ curso.categoria }}
+            </p>
+
+            <p>{{ curso.descripcion }}</p>
+
+            <div class="acciones">
+
+                <button (click)="editarCurso(i)">
+                    Editar
+                </button>
+
+                <button (click)="eliminarCurso(i)">
+                    Eliminar
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

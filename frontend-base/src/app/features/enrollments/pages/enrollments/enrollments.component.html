@@ -1,0 +1,40 @@
+<h2 class="titulo"> Gestion de Inscripciones </h2>
+<div class="container">
+    <!-- FORMULARIO -->
+    <div class="formulario">
+
+        <h3> {{ editMode ? 'Editar Inscripción' : 'Nueva Inscripción' }}</h3>
+        <form (ngSubmit)="save()">
+            <input type="text" [(ngModel)]="enrollment.name" name="name" placeholder="Nombre Completo" required>
+            <input type="text" [(ngModel)]="enrollment.course" name="course" placeholder="Curso" required>
+            <input type="date" [(ngModel)]="enrollment.date" name="date" required>
+            <button type="submit">{{editMode? 'Actualizar' : 'Inscribirse'}}</button>
+        </form>
+    </div>
+
+    <!-- LISTADO -->
+    <div class="lista">
+        <h3> Inscripciones Registradas </h3>
+        <table>
+            <thead>
+                <tr>
+                    <th> Nombre </th>
+                    <th> Curso </th>
+                    <th> Fecha </th>
+                    <th> Acciones </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let e of enrollments">
+                    <td> {{ e.name }} </td>
+                    <td> {{ e.course }} </td>
+                    <td> {{ e.date | date }} </td>
+                    <td>
+                        <button (click)="edit(e)">Editar</button>
+                        <button (click)="delete(e.id!) ">Eliminar</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

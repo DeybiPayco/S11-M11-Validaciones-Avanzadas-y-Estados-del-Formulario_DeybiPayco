@@ -1,0 +1,191 @@
+/* ═══════════════════════════════════════════
+   HERO — EduSmart Premium
+═══════════════════════════════════════════ */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+.hero {
+  background: #080a1a;
+  min-height: 92vh;
+  display: flex;
+  align-items: center;
+  padding: 80px 80px;
+  overflow: hidden;
+  position: relative;
+  font-family: 'Inter', sans-serif;
+}
+
+/* Fondo decorativo */
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -200px;
+  left: -200px;
+  width: 700px;
+  height: 700px;
+  background: radial-gradient(circle, rgba(124, 58, 237, 0.18) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: -150px;
+  right: -100px;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(0, 229, 255, 0.12) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+/* CONTENIDO */
+.hero-content {
+  width: 100%;
+  max-width: 1200px;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 70px;
+  flex-wrap: wrap;
+  position: relative;
+  z-index: 1;
+}
+
+/* TEXTO */
+.hero-text {
+  flex: 1;
+  min-width: 320px;
+}
+
+/* BADGE */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(0, 229, 255, 0.08);
+  color: #00e5ff;
+  padding: 8px 18px;
+  border-radius: 100px;
+  margin-bottom: 28px;
+  font-size: 13px;
+  font-weight: 600;
+  border: 1px solid rgba(0, 229, 255, 0.2);
+  letter-spacing: 0.5px;
+}
+
+/* TITULO */
+.hero-text h1 {
+  font-size: 58px;
+  line-height: 1.1;
+  color: #ffffff;
+  margin-bottom: 24px;
+  font-weight: 900;
+  letter-spacing: -1.5px;
+}
+
+.hero-text h1 span {
+  background: linear-gradient(90deg, #00e5ff, #7c3aed);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* DESCRIPCIÓN */
+.hero-text p {
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 17px;
+  line-height: 1.8;
+  margin-bottom: 40px;
+  max-width: 520px;
+}
+
+/* BOTONES */
+.hero-buttons {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.hero-buttons button {
+  padding: 15px 32px;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #00e5ff, #7c3aed);
+  color: white;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 15px;
+  letter-spacing: 0.3px;
+  box-shadow: 0 8px 25px rgba(0, 229, 255, 0.3);
+}
+
+.hero-buttons button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 35px rgba(0, 229, 255, 0.45);
+}
+
+.btn-secondary {
+  background: transparent !important;
+  color: rgba(255, 255, 255, 0.8) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  box-shadow: none !important;
+}
+
+.btn-secondary:hover {
+  border-color: rgba(0, 229, 255, 0.5) !important;
+  color: #00e5ff !important;
+  box-shadow: none !important;
+}
+
+/* IMAGEN */
+.hero-image {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  min-width: 320px;
+  position: relative;
+}
+
+.hero-image::before {
+  content: '';
+  position: absolute;
+  inset: -20px;
+  background: linear-gradient(135deg, rgba(0, 229, 255, 0.15), rgba(124, 58, 237, 0.15));
+  border-radius: 32px;
+  filter: blur(30px);
+}
+
+.hero-image img {
+  width: 100%;
+  max-width: 520px;
+  border-radius: 20px;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
+  object-fit: cover;
+  position: relative;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .hero {
+    padding: 60px 24px;
+  }
+
+  .hero-content {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .hero-text h1 {
+    font-size: 40px;
+  }
+
+  .hero-text p {
+    margin: 0 auto 36px;
+  }
+
+  .hero-buttons {
+    justify-content: center;
+  }
+}

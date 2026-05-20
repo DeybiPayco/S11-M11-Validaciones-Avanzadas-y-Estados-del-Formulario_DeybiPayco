@@ -1,0 +1,353 @@
+<h2 class="titulo"> Gestión de Estudiantes </h2>
+
+<div class="container">
+
+  <!-- FORMULARIO -->
+  <div class="formulario">
+
+    <!-- INDICADOR DE PASOS -->
+    <div class="steps-indicator">
+      <div class="step" [class.step-active]="paso === 1" [class.step-done]="paso > 1">
+        <span class="step-number">1</span>
+        <span class="step-label">Datos Personales</span>
+      </div>
+      <div class="step-line" [class.step-line-done]="paso > 1"></div>
+      <div class="step" [class.step-active]="paso === 2">
+        <span class="step-number">2</span>
+        <span class="step-label">Datos Académicos</span>
+      </div>
+    </div>
+
+    <h3>
+      {{ editando ? 'Editar Estudiante' : 'Registrar Estudiante' }}
+    </h3>
+
+    <!-- ESTADO DEL FORMULARIO (debug visual) -->
+    <div class="form-status">
+      <span [class.badge-ok]="estudianteForm.valid" [class.badge-err]="estudianteForm.invalid">
+        {{ estudianteForm.valid ? '✔ Formulario válido' : '✖ Formulario inválido' }}
+      </span>
+      <span class="badge-state" *ngIf="estudianteForm.pristine">pristine</span>
+      <span class="badge-state" *ngIf="estudianteForm.dirty">dirty</span>
+      <span class="badge-state" *ngIf="estudianteForm.touched">touched</span>
+      <span class="badge-state" *ngIf="estudianteForm.untouched">untouched</span>
+    </div>
+
+    <form
+      [formGroup]="estudianteForm"
+      (ngSubmit)="guardarEstudiante()">
+
+      <!-- ══════════════ PASO 1 ══════════════ -->
+      <div *ngIf="paso === 1">
+
+        <div class="doble">
+
+          <!-- NOMBRE -->
+          <div class="campo">
+            <label>Nombre <span class="req">*</span></label>
+            <input
+              type="text"
+              placeholder="Ingrese nombre"
+              formControlName="nombre"
+              [class.is-valid]="getField('nombre').valid && getField('nombre').touched"
+              [class.is-invalid]="getField('nombre').invalid && getField('nombre').touched">
+            <div class="error-msg" *ngIf="getField('nombre').touched && getField('nombre').errors">
+              <span *ngIf="getField('nombre').errors?.['required']">El nombre es obligatorio.</span>
+              <span *ngIf="getField('nombre').errors?.['minlength']">Mínimo 2 caracteres.</span>
+              <span *ngIf="getField('nombre').errors?.['soloLetras']">Solo se permiten letras y espacios.</span>
+            </div>
+          </div>
+
+          <!-- APELLIDO -->
+          <div class="campo">
+            <label>Apellido <span class="req">*</span></label>
+            <input
+              type="text"
+              placeholder="Ingrese apellido"
+              formControlName="apellido"
+              [class.is-valid]="getField('apellido').valid && getField('apellido').touched"
+              [class.is-invalid]="getField('apellido').invalid && getField('apellido').touched">
+            <div class="error-msg" *ngIf="getField('apellido').touched && getField('apellido').errors">
+              <span *ngIf="getField('apellido').errors?.['required']">El apellido es obligatorio.</span>
+              <span *ngIf="getField('apellido').errors?.['minlength']">Mínimo 2 caracteres.</span>
+              <span *ngIf="getField('apellido').errors?.['soloLetras']">Solo se permiten letras y espacios.</span>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="doble">
+
+          <!-- CORREO -->
+          <div class="campo">
+            <label>Correo <span class="req">*</span></label>
+            <input
+              type="email"
+              placeholder="ejemplo@correo.com"
+              formControlName="correo"
+              [class.is-valid]="getField('correo').valid && getField('correo').touched"
+              [class.is-invalid]="getField('correo').invalid && getField('correo').touched">
+            <div class="error-msg" *ngIf="getField('correo').touched && getField('correo').errors">
+              <span *ngIf="getField('correo').errors?.['required']">El correo es obligatorio.</span>
+              <span *ngIf="getField('correo').errors?.['email']">Ingrese un correo válido.</span>
+            </div>
+          </div>
+
+          <!-- TELÉFONO -->
+          <div class="campo">
+            <label>Teléfono <span class="req">*</span></label>
+            <input
+              type="text"
+              placeholder="Ej: 0991234567"
+              formControlName="telefono"
+              [class.is-valid]="getField('telefono').valid && getField('telefono').touched"
+              [class.is-invalid]="getField('telefono').invalid && getField('telefono').touched">
+            <div class="error-msg" *ngIf="getField('telefono').touched && getField('telefono').errors">
+              <span *ngIf="getField('telefono').errors?.['required']">El teléfono es obligatorio.</span>
+              <span *ngIf="getField('telefono').errors?.['pattern']">Solo números, 7-15 dígitos. Ej: 0991234567</span>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="doble">
+
+          <!-- EDAD -->
+          <div class="campo">
+            <label>Edad <span class="req">*</span></label>
+            <input
+              type="number"
+              placeholder="Ej: 20"
+              formControlName="edad"
+              [class.is-valid]="getField('edad').valid && getField('edad').touched"
+              [class.is-invalid]="getField('edad').invalid && getField('edad').touched">
+            <div class="error-msg" *ngIf="getField('edad').touched && getField('edad').errors">
+              <span *ngIf="getField('edad').errors?.['required']">La edad es obligatoria.</span>
+              <span *ngIf="getField('edad').errors?.['min']">La edad mínima es 16 años.</span>
+              <span *ngIf="getField('edad').errors?.['max']">La edad máxima es 80 años.</span>
+            </div>
+          </div>
+
+          <!-- CÓDIGO -->
+          <div class="campo">
+            <label>Código <span class="req">*</span></label>
+            <input
+              type="text"
+              placeholder="Ej: EST-001"
+              formControlName="codigo"
+              [class.is-valid]="getField('codigo').valid && getField('codigo').touched"
+              [class.is-invalid]="getField('codigo').invalid && getField('codigo').touched">
+            <div class="error-msg" *ngIf="getField('codigo').touched && getField('codigo').errors">
+              <span *ngIf="getField('codigo').errors?.['required']">El código es obligatorio.</span>
+              <span *ngIf="getField('codigo').errors?.['minlength']">Mínimo 4 caracteres.</span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- BOTÓN SIGUIENTE -->
+        <div class="acciones-form">
+          <button
+            type="button"
+            class="btn-next"
+            (click)="avanzarPaso2()">
+            Siguiente ➜
+          </button>
+        </div>
+
+      </div>
+
+      <!-- ══════════════ PASO 2 ══════════════ -->
+      <div *ngIf="paso === 2">
+
+        <div class="grupo-inputs">
+
+          <!-- CARRERA -->
+          <div class="campo">
+            <label>Carrera <span class="req">*</span></label>
+            <select
+              formControlName="carrera"
+              [class.is-valid]="getField('carrera').valid && getField('carrera').touched"
+              [class.is-invalid]="getField('carrera').invalid && getField('carrera').touched">
+              <option value="">Seleccione carrera</option>
+              <option value="Ingeniería de Sistemas">Ingeniería de Sistemas</option>
+              <option value="Diseño Gráfico">Diseño Gráfico</option>
+              <option value="Marketing">Marketing</option>
+              <option value="Administración">Administración</option>
+            </select>
+            <div class="error-msg" *ngIf="getField('carrera').touched && getField('carrera').errors">
+              <span *ngIf="getField('carrera').errors?.['required']">Seleccione una carrera.</span>
+            </div>
+          </div>
+
+          <!-- GÉNERO -->
+          <div class="campo">
+            <label>Género</label>
+            <select formControlName="genero">
+              <option value="">Seleccione género</option>
+              <option value="Masculino">Masculino</option>
+              <option value="Femenino">Femenino</option>
+            </select>
+          </div>
+
+        </div>
+
+        <!-- FECHA DE NACIMIENTO -->
+        <div class="campo">
+          <label>Fecha de Nacimiento</label>
+          <input
+            type="date"
+            formControlName="fechaNacimiento"
+            [class.is-valid]="getField('fechaNacimiento').valid && getField('fechaNacimiento').touched && getField('fechaNacimiento').value"
+            [class.is-invalid]="getField('fechaNacimiento').invalid && getField('fechaNacimiento').touched">
+          <div class="error-msg" *ngIf="getField('fechaNacimiento').touched && getField('fechaNacimiento').errors">
+            <span *ngIf="getField('fechaNacimiento').errors?.['fechaFutura']">La fecha no puede ser hoy ni en el futuro.</span>
+            <span *ngIf="getField('fechaNacimiento').errors?.['menorDeEdad']">El estudiante debe tener al menos 16 años.</span>
+            <span *ngIf="getField('fechaNacimiento').errors?.['edadMaxima']">La fecha ingresada supera los 80 años.</span>
+          </div>
+        </div>
+
+        <!-- DIRECCIÓN -->
+        <div class="campo">
+          <label>Dirección <span class="req">*</span></label>
+          <textarea
+            placeholder="Ingrese dirección completa"
+            formControlName="direccion"
+            [class.is-valid]="getField('direccion').valid && getField('direccion').touched"
+            [class.is-invalid]="getField('direccion').invalid && getField('direccion').touched">
+          </textarea>
+          <div class="error-msg" *ngIf="getField('direccion').touched && getField('direccion').errors">
+            <span *ngIf="getField('direccion').errors?.['required']">La dirección es obligatoria.</span>
+            <span *ngIf="getField('direccion').errors?.['minlength']">Mínimo 5 caracteres.</span>
+          </div>
+        </div>
+
+        <!-- BOTONES -->
+        <div class="acciones-form">
+
+          <button
+            type="button"
+            class="btn-back"
+            (click)="paso = 1">
+            ⬅ Atrás
+          </button>
+
+          <button
+            type="submit"
+            class="btn-save"
+            [disabled]="estudianteForm.invalid"
+            [class.btn-disabled]="estudianteForm.invalid">
+            {{ editando ? '✔ Actualizar' : '✔ Guardar' }}
+          </button>
+
+        </div>
+
+      </div>
+
+    </form>
+
+  </div>
+
+  <!-- TABLA -->
+  <div class="lista">
+
+    <h3>Lista de Estudiantes</h3>
+
+    <p class="empty-msg" *ngIf="estudiantes.length === 0">
+      No hay estudiantes registrados aún.
+    </p>
+
+    <div class="table-container" *ngIf="estudiantes.length > 0">
+
+      <table>
+
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Nombre</th>
+            <th>Correo</th>
+            <th>Carrera</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr
+            *ngFor="let estudiante of estudiantes; let i = index">
+
+            <td>{{ i + 1 }}</td>
+
+            <td>
+              {{ estudiante.nombre }}
+              {{ estudiante.apellido }}
+            </td>
+
+            <td>{{ estudiante.correo }}</td>
+
+            <td>{{ estudiante.carrera }}</td>
+
+            <td class="acciones-tabla">
+
+              <button
+                class="btn-details"
+                (click)="estudianteSeleccionado = estudiante">
+                👁 Ver
+              </button>
+
+              <button
+                class="btn-edit"
+                (click)="editarEstudiante(estudiante, i)">
+                ✏ Editar
+              </button>
+
+              <button
+                class="btn-delete"
+                (click)="eliminarEstudiante(i)">
+                🗑 Eliminar
+              </button>
+
+            </td>
+
+          </tr>
+        </tbody>
+
+      </table>
+
+    </div>
+
+  </div>
+
+</div>
+
+<!-- MODAL DETALLES -->
+<div
+  class="modal"
+  *ngIf="estudianteSeleccionado">
+
+  <div class="modal-content">
+
+    <h2>Información del Estudiante</h2>
+
+    <div class="modal-grid">
+
+      <p><strong>Nombre:</strong> {{ estudianteSeleccionado.nombre }} {{ estudianteSeleccionado.apellido }}</p>
+      <p><strong>Correo:</strong> {{ estudianteSeleccionado.correo }}</p>
+      <p><strong>Teléfono:</strong> {{ estudianteSeleccionado.telefono }}</p>
+      <p><strong>Edad:</strong> {{ estudianteSeleccionado.edad }} años</p>
+      <p><strong>Carrera:</strong> {{ estudianteSeleccionado.carrera }}</p>
+      <p><strong>Código:</strong> {{ estudianteSeleccionado.codigo }}</p>
+      <p><strong>Fecha Nac.:</strong> {{ estudianteSeleccionado.fechaNacimiento || '—' }}</p>
+      <p><strong>Género:</strong> {{ estudianteSeleccionado.genero || '—' }}</p>
+      <p class="full-width"><strong>Dirección:</strong> {{ estudianteSeleccionado.direccion }}</p>
+
+    </div>
+
+    <button
+      class="btn-close"
+      (click)="estudianteSeleccionado = null">
+      Cerrar
+    </button>
+
+  </div>
+
+</div>

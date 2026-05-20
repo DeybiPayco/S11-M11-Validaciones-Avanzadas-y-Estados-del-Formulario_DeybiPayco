@@ -1,0 +1,149 @@
+/* ═══════════════════════════════════════════
+   PANEL — EduSmart Premium
+═══════════════════════════════════════════ */
+.panel-container {
+  padding: 40px;
+  font-family: 'Inter', sans-serif;
+  background: #0a0c1e;
+  min-height: 100%;
+}
+
+/* TOPBAR */
+.topbar {
+  margin-bottom: 40px;
+}
+
+.topbar h1 {
+  font-size: 32px;
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: -0.8px;
+  margin-bottom: 8px;
+}
+
+.topbar p {
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+/* BOTÓN HOME */
+.home-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 20px;
+  padding: 11px 22px;
+  background: rgba(0, 229, 255, 0.08);
+  color: #00e5ff;
+  text-decoration: none;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 14px;
+  border: 1px solid rgba(0, 229, 255, 0.2);
+  transition: all 0.25s ease;
+  letter-spacing: 0.2px;
+}
+
+.home-btn:hover {
+  background: rgba(0, 229, 255, 0.14);
+  border-color: rgba(0, 229, 255, 0.4);
+  transform: translateX(-3px);
+}
+
+/* GRID CARDS */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+}
+
+/* CARD */
+.card {
+  background: rgba(255, 255, 255, 0.03);
+  padding: 30px;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #00e5ff, #7c3aed);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(0, 229, 255, 0.15);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+}
+
+.card:hover::before {
+  opacity: 1;
+}
+
+/* ICONO CARD */
+.card-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, rgba(0, 229, 255, 0.12), rgba(124, 58, 237, 0.12));
+  border: 1px solid rgba(0, 229, 255, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+
+/* TITULO */
+.card h3 {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+}
+
+/* TEXTO */
+.card p {
+  color: rgba(255, 255, 255, 0.35);
+  font-size: 13px;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+/* NÚMEROS */
+.card span {
+  font-size: 42px;
+  font-weight: 900;
+  background: linear-gradient(135deg, #00e5ff, #7c3aed);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: -1.5px;
+  line-height: 1;
+  display: block;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .panel-container {
+    padding: 24px 20px;
+  }
+
+  .topbar h1 {
+    font-size: 26px;
+  }
+}

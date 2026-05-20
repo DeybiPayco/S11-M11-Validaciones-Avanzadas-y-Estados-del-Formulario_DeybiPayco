@@ -1,0 +1,26 @@
+/* ═══════════════════════════════════════════
+   FOOTER — EduSmart Premium
+═══════════════════════════════════════════ */
+footer {
+  background: #080a1a;
+  border-top: 1px solid rgba(0, 229, 255, 0.1);
+  padding: 32px 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Inter', sans-serif;
+}
+
+footer p {
+  color: rgba(255, 255, 255, 0.35);
+  font-size: 13px;
+  letter-spacing: 0.5px;
+}
+
+footer p span {
+  background: linear-gradient(90deg, #00e5ff, #7c3aed);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 700;
+}

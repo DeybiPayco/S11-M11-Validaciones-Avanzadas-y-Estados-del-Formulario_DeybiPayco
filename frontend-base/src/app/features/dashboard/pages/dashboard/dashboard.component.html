@@ -1,0 +1,45 @@
+<div class="dashboard-layout">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+
+    <div class="logo">
+      <h2>NexusLearn</h2>
+    </div>
+
+    <nav>
+
+      <a routerLink="/dashboard" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+
+        🏠 Panel
+
+      </a>
+
+      <a routerLink="/dashboard/enrollments" routerLinkActive="active">
+
+        📚 Enrollments
+
+      </a>
+
+      <a routerLink="/dashboard/cursos" routerLinkActive="active">
+
+        🎓 Cursos
+
+      </a>
+      <a routerLink="/dashboard/estudiantes" routerLinkActive="active">
+
+        👤 Estudiante
+
+      </a>
+    </nav>
+
+  </aside>
+
+  <!-- CONTENIDO -->
+  <main class="content">
+
+    <router-outlet></router-outlet>
+
+  </main>
+
+</div>
